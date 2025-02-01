@@ -5,7 +5,6 @@ import RootLayout from "./layout/RootLayout"
 import HomeFeed from "./pages/HomeFeed"
 
 function App() {
-  // make a login page that redirects to the home page
   const router = createBrowserRouter([
     {
       path: '/',
