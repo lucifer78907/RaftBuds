@@ -34,6 +34,9 @@ function Intro() {
                     </li>
                 </ul>
             </main>
+            <aside className='mt-10 flex flex-col items-center gap-4'>
+                <p className='text-xl text-neutral-500 font-medium tracking-wide'>Login to view posts, follow other people and much more!</p>
+            </aside>
             <img src={introImage1} className='h-60 absolute bottom-10 right-4 rotate-30' />
             <img src={introImage2} className='h-60 absolute bottom-10 left-4 rotate-45' />
         </section>

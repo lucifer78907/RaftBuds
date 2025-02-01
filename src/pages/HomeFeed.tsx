@@ -1,11 +1,12 @@
 import { useAuth0 } from "@auth0/auth0-react"
 import Intro from "../components/Intro";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function HomeFeed() {
     const { isAuthenticated, user, isLoading } = useAuth0();
 
     if (isLoading) {
-        return <h1>Loading...</h1>;
+        return <LoadingSpinner />;
     }
 
     if (!isAuthenticated) {
