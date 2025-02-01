@@ -3,6 +3,11 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import RootLayout from "./layout/RootLayout"
 // Pages
 import HomeFeed from "./pages/HomeFeed"
+import AddPost from "./pages/AddPost"
+import AddFriends from "./pages/AddFriends"
+
+// TODO -ADD ERROR ELEMENT
+// TODO -ADD friends , follow , unfollow functionality
 
 function App() {
   const router = createBrowserRouter([
@@ -14,6 +19,14 @@ function App() {
           index: true,
           element: <HomeFeed />
         },
+        {
+          path: 'add-post',
+          element: <AddPost />
+        },
+        {
+          path: 'add-friends',
+          element: <AddFriends />
+        }
       ]
     }
   ])

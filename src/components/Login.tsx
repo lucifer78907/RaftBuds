@@ -42,7 +42,7 @@ function Login() {
                         <header className="flex flex-col gap-2 items-center"
                         >
                             <img src={user.picture} alt={user.name} className="w-12 h-12 rounded-full shadow-md" />
-                            <h3 className="text-base font-medium text-neutral-700">{user.name}</h3>
+                            <h3 className="text-base font-medium text-neutral-600">Profile</h3>
                         </header>
                     </article>
                 }

@@ -30,7 +30,7 @@ function Profile({ name, email, picture, handleLogout }: User) {
                 <section className="my-8  grid grid-cols-2 gap-4 text-neutral-800">
                     <button className="flex items-center gap-2 cursor-pointer shadow-md px-4 py-2 rounded-xl"><MdAddAPhoto size={'2em'} className="fill-neutral-500" /> Add post</button>
                     <button className="flex items-center gap-2 cursor-pointer shadow-md px-4 py-2 rounded-xl"><FaUserTag size={'2em'} className="fill-neutral-500" /> Tags</button>
-                    <button className="flex items-center gap-2 cursor-pointer shadow-md px-4 py-2 rounded-xl"><MdOutlinePhotoLibrary size={'2em'} className="fill-neutral-500" /> Posts</button>
+                    <button className="flex items-center gap-2 cursor-pointer shadow-md px-4 py-2 rounded-xl"><MdOutlinePhotoLibrary size={'2em'} className="fill-neutral-500" />My Posts</button>
                     <button className="flex items-center gap-2 cursor-pointer shadow-md px-4 py-2 rounded-xl"><FaUserFriends size={'2em'} className="fill-neutral-500" />Connections</button>
                 </section>
             </main>
