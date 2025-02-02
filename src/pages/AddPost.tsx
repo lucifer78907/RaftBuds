@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { CREATE_POST } from "../gql/queries";
 import { useDebouncedCallback } from "use-debounce";
 import { useNavigate } from "react-router-dom";
+import { FaHome } from "react-icons/fa";
 
 type Post = {
     title: string,
@@ -50,9 +51,14 @@ function AddPost() {
 
     return (
         <section className="p-6">
-            <header className="flex flex-col items-start gap-2">
-                <h1 className="text-3xl text-orange-500 font-bold">Add post</h1>
-                <p className="text-lg text-neutral-500">Share something exiciting with your friends!</p>
+            <header className="flex justify-between items-start gap-8">
+                <div>
+                    <h1 className="text-3xl text-orange-500 font-bold">Add post</h1>
+                    <p className="text-lg text-neutral-500">Share something exiciting with your friends!</p>
+                </div>
+                <aside className="flex items-center gap-4">
+                    <p onClick={() => navigate('/')} className="flex items-center gap-2 bg-orange-100 rounded-full shadow-md px-4 py-2 text-orange-600 cursor-pointer"><FaHome size={'1.4em'} />Home</p>
+                </aside>
             </header>
             <main>
                 <form onSubmit={handlePostSubmit} className="flex flex-col gap-4 mt-4">

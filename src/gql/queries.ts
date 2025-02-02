@@ -17,3 +17,13 @@ export const CREATE_POST = gql`
         }
     }
 `
+
+export const GET_USERS_TO_FOLLOW = gql`
+    query test($authId: String!){
+        getPeopleToFollow(id: $authId) {
+            username,
+            email,
+            profilePicture,
+    }
+}
+`;

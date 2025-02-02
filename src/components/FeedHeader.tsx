@@ -8,7 +8,7 @@ function FeedHeader({ user }) {
     return (
         <header className="flex justify-between items-start gap-8">
             <div>
-                <h1 className="text-3xl text-neutral-700 font-bold">Welcome <span className="text-orange-500">{user.name}</span></h1>
+                <h1 className="text-3xl text-neutral-700 font-bold">Welcome <span className="text-orange-500">{user.nickname || user.name}</span></h1>
                 <p className="mt-5 text-2xl text-neutral-500">Latest posts from fellow RaftBuds</p>
             </div>
             <aside className="flex items-center gap-4">
