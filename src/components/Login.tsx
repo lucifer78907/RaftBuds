@@ -14,7 +14,11 @@ function Login() {
 
     const handleLogin = () => { loginWithRedirect() }
 
-    const handleLogout = () => { logout({ logoutParams: { returnTo: window.location.origin } }) }
+    const handleLogout = () => {
+        // remove before logout
+        localStorage.removeItem('userData');
+        logout({ logoutParams: { returnTo: window.location.origin } })
+    }
 
     const handleModalClose = () => { setShowModal(false) }
 

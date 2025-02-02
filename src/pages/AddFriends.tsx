@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client"
 import { useAuth0 } from "@auth0/auth0-react"
 import { GET_USERS_TO_FOLLOW } from "../gql/queries"
 import LoadingSpinner from "../components/LoadingSpinner"
+import { useEffect, useState } from "react"
 
 type FriendCardDetails = {
     username: string,
@@ -12,8 +13,14 @@ type FriendCardDetails = {
 }
 
 function AddFriends() {
-    const { user } = useAuth0();
-    const { data, loading } = useQuery(GET_USERS_TO_FOLLOW, { variables: { authId: user?.sub } });
+    const [id, setId] = useState<string>('');
+    const { data, loading } = useQuery(GET_USERS_TO_FOLLOW, { variables: { authId: id } });
+
+    useEffect(() => {
+        const id = localStorage.getItem('userData');
+        if (id)
+            setId(id);
+    }, [])
 
     if (loading)
         return <LoadingSpinner />

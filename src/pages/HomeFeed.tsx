@@ -6,6 +6,7 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import Post from "../components/Post";
 import FeedHeader from "../components/FeedHeader";
 import { CREATE_USER } from "../gql/queries";
+import { data } from "react-router-dom";
 
 const posts = [
     {
@@ -84,7 +85,7 @@ const posts = [
 
 function HomeFeed() {
     const { isAuthenticated, user, isLoading, getAccessTokenSilently } = useAuth0();
-    const [createUser] = useMutation(CREATE_USER);
+    const [createUser, { data: userData }] = useMutation(CREATE_USER);
 
     useEffect(() => {
         // create the user in the db
@@ -111,6 +112,12 @@ function HomeFeed() {
             syncUser();
         }
     }, [user, isAuthenticated, getAccessTokenSilently, createUser])
+
+    useEffect(() => {
+        if (userData) {
+            localStorage.setItem('userData', userData?.createUser?.id)
+        }
+    }, [userData])
 
     if (isLoading) {
         return <LoadingSpinner />;
