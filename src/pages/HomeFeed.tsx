@@ -1,10 +1,11 @@
 import { useAuth0 } from "@auth0/auth0-react"
-import { useMutation, gql } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useEffect } from "react";
 import Intro from "../components/Intro";
 import LoadingSpinner from "../components/LoadingSpinner";
 import Post from "../components/Post";
 import FeedHeader from "../components/FeedHeader";
+import { CREATE_USER } from "../gql/queries";
 
 const posts = [
     {
@@ -79,15 +80,7 @@ const posts = [
     }
 ]
 
-const CREATE_USER = gql`
-    mutation CreateUser($auth0Id:String!,$username:String!,$email:String!,$profilePicture:String!) {
-        createUser(auth0Id:$auth0Id,username:$username,email:$email,profilePicture:$profilePicture) {
-            id
-            auth0Id
-            username
-        }
-    }
-`;
+
 
 function HomeFeed() {
     const { isAuthenticated, user, isLoading, getAccessTokenSilently } = useAuth0();
@@ -126,9 +119,6 @@ function HomeFeed() {
     if (!isAuthenticated) {
         return <Intro />
     }
-
-
-
 
 
     return (
