@@ -1,15 +1,14 @@
 import FriendCard from "../components/FriendCard"
 import { useQuery } from "@apollo/client"
-import { useAuth0 } from "@auth0/auth0-react"
 import { GET_USERS_TO_FOLLOW } from "../gql/queries"
 import LoadingSpinner from "../components/LoadingSpinner"
 import { useEffect, useState } from "react"
 
 type FriendCardDetails = {
+    id: string,
     username: string,
     email: string,
     profilePicture: string,
-    isFollowed: boolean
 }
 
 function AddFriends() {

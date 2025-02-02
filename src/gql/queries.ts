@@ -28,3 +28,20 @@ export const GET_USERS_TO_FOLLOW = gql`
     }
 }
 `;
+
+
+export const FOLLOW_USER = gql`
+    mutation FollowUser($userId: ID!, $userToFollowId: ID!){
+    followUser(userId: $userId, userToFollowId: $userToFollowId) {
+        username
+    }
+    }
+`;
+
+export const UNFOLLOW_USER = gql`
+    mutation UnfollowUser($userId: ID!, $userTounfollowId: ID!){
+    unfollowUser(userId: $userId, userTounfollowId: $userTounfollowId) {
+        username
+    }
+    }
+`
