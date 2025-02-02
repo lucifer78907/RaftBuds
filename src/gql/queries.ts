@@ -11,23 +11,13 @@ export const CREATE_USER = gql`
 `;
 
 export const CREATE_POST = gql`
-    mutation CreatePost($author:String!,$title:String!,$content:String!,$imageUrl:String!){
+    mutation CreatePost($author:ID!,$title:String!,$content:String!,$imageUrl:String!){
         createPost(author:$author,title:$title,content:$content,imageUrl:$imageUrl){
             title
         }
     }
 `
 
-export const GET_USERS_TO_FOLLOW = gql`
-    query test($authId: String!){
-        getPeopleToFollow(id: $authId) {
-            id,
-            username,
-            email,
-            profilePicture,
-    }
-}
-`;
 
 
 export const FOLLOW_USER = gql`
@@ -45,3 +35,32 @@ export const UNFOLLOW_USER = gql`
     }
     }
 `
+
+
+export const GET_USERS_TO_FOLLOW = gql`
+    query test($authId: String!){
+        getPeopleToFollow(id: $authId) {
+            id,
+            username,
+            email,
+            profilePicture,
+    }
+}
+`;
+
+
+export const GET_FEED = gql`
+   query test($userId: ID!){
+    getFeed(userId: $userId) {
+        id,
+    title,
+    content,
+    imageUrl
+    author {
+      profilePicture,
+      username,
+      email
+    }
+  }
+}
+`;

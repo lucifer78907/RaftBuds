@@ -1,24 +1,25 @@
-import React from 'react'
+function Post({ post }: { post: PostProps }) {
 
-function Post({ user, post }) {
+    console.log(post);
 
     return (
         <article className="flex flex-col gap-4 mt-8 shadow-lg p-4 bg-neutral-50 rounded-xl">
             <header className="flex gap-4 items-center">
-                <img src={user.picture} alt={user.name} className="w-12 h-12 rounded-full shadow-md" />
+                <img src={post.author.profilePicture} alt={post.author.username} className="w-12 h-12 rounded-full shadow-md" />
                 <div>
-                    <h2 className="text-xl text-neutral-700 font-semibold">{user.name}</h2>
-                    <p className="text-neutral-500">React.js developer</p>
+                    <h2 className="text-xl text-neutral-700 font-semibold">{post.author.username}</h2>
+                    <p className="text-neutral-500">{post.author.email}</p>
                 </div>
             </header>
             <main className="flex flex-col gap-4">
-                <p className="text-lg text-neutral-800 font-medium">{post.title} with  <span className='text-blue-500'>
+                {/* <p className="text-lg text-neutral-800 font-medium">{post.title} with  <span className='text-blue-500'>
                     {post.tags.length > 2 ? `${post.tags.length} others` : `${post.tags.join(' & ')}`}
-                </span></p>
-                <p className="text-lg text-neutral-800">{post.description}</p>
+                </span></p> */}
+                <p className="text-lg text-neutral-800 font-medium">{post.title}</p>
+                <p className="text-lg text-neutral-800">{post.content}</p>
                 <img src={post.imageUrl} alt={post.title} className="rounded-lg shadow-lg" />
             </main>
-        </article>
+        </article >
     )
 }
 

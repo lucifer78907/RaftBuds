@@ -6,8 +6,12 @@ import HomeFeed from "./pages/HomeFeed"
 import AddPost from "./pages/AddPost"
 import AddFriends from "./pages/AddFriends"
 
+// TODO - INFINITE SCROLLING
+// TODO -MENTION FUNCTIONALITY
 // TODO -ADD ERROR ELEMENT
-// TODO -ADD friends , follow , unfollow functionality
+// TODO - REFACTOR LOCALSTORAGE ID GETTING
+// TODO - REFACTOR TS CODE
+// TODO - REFERSH ON ADD POST/ADD FRIENDS
 
 function App() {
   const router = createBrowserRouter([

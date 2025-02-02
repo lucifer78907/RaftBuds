@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { CREATE_POST } from "../gql/queries";
 import { useDebouncedCallback } from "use-debounce";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { FaHome } from "react-icons/fa";
 
 type Post = {
@@ -13,10 +14,17 @@ type Post = {
 }
 
 function AddPost() {
+    const [userId, setUserId] = useState<string>('');
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
     const navigate = useNavigate();
     const [createPost] = useMutation(CREATE_POST);
     const [post, setPost] = useState<Post>({ title: '', imageUrl: '', content: '' })
+
+    useEffect(() => {
+        const id = localStorage.getItem('userData');
+        if (id)
+            setUserId(id);
+    }, [])
 
 
     const handlePostSubmit = async (e: React.FormEvent) => {
@@ -26,7 +34,7 @@ function AddPost() {
 
             await createPost({
                 variables: {
-                    author: user.sub,
+                    author: userId,
                     title: post.title,
                     content: post.content,
                     imageUrl: post.imageUrl
