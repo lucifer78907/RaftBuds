@@ -85,6 +85,17 @@ export const GET_FOLLOWING_LIST = gql`
     }
 `;
 
+export const GET_FOLLOWERS_LIST = gql`
+    query getFollowersList($userId: ID!){
+    getFollowingList(id: $userId) {
+        username
+        email
+        profilePicture
+        id
+    }
+    }
+`;
+
 
 export const GET_USERS_TO_FOLLOW = gql`
     query getUsersToFollow($authId: String!){

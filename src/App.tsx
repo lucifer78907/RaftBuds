@@ -7,9 +7,10 @@ import AddPost from "./pages/AddPost"
 import AddFriends from "./pages/AddFriends"
 import ErrorPage from "./pages/ErrorPage"
 import MyPosts from "./pages/MyPosts"
+import UnfollowPeople from "./pages/Unfollow"
 
 // TODO - INFINITE SCROLLING
-// TODO - UPDATE USER BIO
+// TODO - tagged user posts show with feed
 // TODO - REFERSH ON ADD POST/ADD FRIENDS
 
 function App() {
@@ -34,6 +35,10 @@ function App() {
         {
           path: 'my-posts',
           element: <MyPosts />
+        },
+        {
+          path: 'unfollow',
+          element: <UnfollowPeople />
         }
       ]
     }

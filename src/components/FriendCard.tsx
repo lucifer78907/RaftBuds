@@ -5,11 +5,12 @@ import useLocalStorage from "../hooks/useLocalStorage";
 
 
 
-function FriendCard({ profilePicture, username, email, id }: FriendCardDetails) {
+function FriendCard({ profilePicture, username, email, id, isFollowing }: FriendCardDetails) {
     const { userId } = useLocalStorage();
     const [followUser] = useMutation(FOLLOW_USER);
     const [unFollowUser] = useMutation(UNFOLLOW_USER);
-    const [isFollow, setIsFollow] = useState<boolean>(false);
+
+    const [isFollow, setIsFollow] = useState<boolean>(isFollowing);
 
     const handleFollow = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -33,7 +34,7 @@ function FriendCard({ profilePicture, username, email, id }: FriendCardDetails) 
                 <p className="text-sm text-neutral-500">{email}</p>
             </main>
             <aside className="ml-auto">
-                <button onClick={handleFollow} className={`cursor-pointer px-4 py-2 rounded-full ${isFollow ? 'bg-neutral-500' : 'bg-orange-500'}  text-xl font-medium text-white shadow-lg`}>{isFollow ? 'Following' : 'Follow'}</button>
+                <button onClick={handleFollow} className={`cursor-pointer px-4 py-2 rounded-full ${isFollow ? 'bg-neutral-500' : 'bg-orange-500'}  text-xl font-medium text-white shadow-lg`}>{isFollow ? 'Unfollow' : 'Follow'}</button>
             </aside>
         </article>
     )

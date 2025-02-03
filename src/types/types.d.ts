@@ -52,6 +52,7 @@ interface FriendCardDetails {
     username: string,
     email: string,
     profilePicture: string,
+    isFollowing:boolean,
 }
 
 

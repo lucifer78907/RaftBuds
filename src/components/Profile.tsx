@@ -1,6 +1,6 @@
 import { MdOutlinePhotoLibrary } from "react-icons/md";
-import { FaUserFriends } from "react-icons/fa";
-import { FaUserTag } from "react-icons/fa";
+import { FaUserXmark } from "react-icons/fa6";
+import { FaUserPlus } from "react-icons/fa6";
 import { MdAddAPhoto } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
@@ -27,9 +27,10 @@ function Profile({ username, email, profilePicture, followers, following, handle
                 </header>
                 <section className="my-8  grid grid-cols-2 gap-4 text-neutral-800">
                     <button onClick={() => handleNavigate('/add-post')} className="flex items-center gap-2 cursor-pointer shadow-md px-4 py-2 rounded-xl"><MdAddAPhoto size={'2em'} className="fill-neutral-500" /> Add post</button>
-                    <button className="flex items-center gap-2 cursor-pointer shadow-md px-4 py-2 rounded-xl"><FaUserTag size={'2em'} className="fill-neutral-500" /> Tags</button>
                     <button onClick={() => handleNavigate('/my-posts')} className="flex items-center gap-2 cursor-pointer shadow-md px-4 py-2 rounded-xl"><MdOutlinePhotoLibrary size={'2em'} className="fill-neutral-500" />My Posts</button>
-                    <button className="flex items-center gap-2 cursor-pointer shadow-md px-4 py-2 rounded-xl"><FaUserFriends size={'2em'} className="fill-neutral-500" />Connections</button>
+                    <button onClick={() => handleNavigate('/add-friends')} className="flex items-center gap-2 cursor-pointer shadow-md px-4 py-2 rounded-xl"><FaUserPlus size={'2em'} className="fill-neutral-500" />Add friends</button>
+                    <button onClick={() => handleNavigate('/unfollow')} className="flex items-center gap-2 cursor-pointer shadow-md px-2 py-2 rounded-xl"><FaUserXmark size={'2em'} className="fill-neutral-500" />Remove friends</button>
+
                 </section>
             </main>
             <button onClick={handleLogout} className="cursor-pointer  px-4 py-2 text-2xl rounded-xl self-center shadow-md font-medium bg-red-500 text-neutral-50">Logout</button>

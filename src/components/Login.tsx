@@ -17,8 +17,6 @@ function Login() {
     const { user, isLoading } = useAuth0();
     const { data } = useQuery(GET_USER, { variables: { userId: userId } });
 
-    console.log(data);
-
     const handleLogin = () => { loginWithRedirect() }
 
     const handleLogout = () => {
