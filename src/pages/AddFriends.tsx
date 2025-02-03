@@ -32,7 +32,14 @@ function AddFriends() {
             </header>
             <main className="mt-6 grid grid-cols-2 gap-8">
                 {data?.getPeopleToFollow.map((people: FriendCardDetails) => <FriendCard key={people.email} {...people} />)}
+
             </main>
+            {data?.getPeopleToFollow.length === 0 &&
+                <div className="text-center mt-20">
+                    <h1 className="text-4xl text-orange-500 font-bold">Omg! You followed everyone</h1>
+                    <p className="text-xl mt-2 text-neutral-500">Check back later to find new friends!</p>
+                </div>
+            }
         </section>
     )
 }

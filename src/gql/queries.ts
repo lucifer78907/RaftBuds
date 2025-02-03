@@ -36,8 +36,46 @@ export const UNFOLLOW_USER = gql`
     }
 `
 
+export const GET_USER = gql`
+    query getUser($userId: ID!){
+    getUser(userId: $userId) {
+        username
+        email
+        profilePicture
+        followers {
+            id
+            username,
+            email,
+        }
+        following {
+            id,
+            username,
+            email,
+        }
+  }
+}`;
+
+export const GET_USER_POSTS = gql`
+    query getUserPosts($userId: ID!){
+    getUserPosts(userId: $userId) {
+        id
+        title,
+        content,
+        imageUrl
+        mentions {
+        username
+        }
+        author {
+        profilePicture
+        username
+        email
+        }
+    }
+}
+`;
+
 export const GET_FOLLOWING_LIST = gql`
-    query test($userId: ID!){
+    query getFollowingList($userId: ID!){
     getFollowingList(id: $userId) {
         username
         email
@@ -49,7 +87,7 @@ export const GET_FOLLOWING_LIST = gql`
 
 
 export const GET_USERS_TO_FOLLOW = gql`
-    query test($authId: String!){
+    query getUsersToFollow($authId: String!){
         getPeopleToFollow(id: $authId) {
             id,
             username,
@@ -61,7 +99,7 @@ export const GET_USERS_TO_FOLLOW = gql`
 
 
 export const GET_FEED = gql`
-   query test($userId: ID!){
+   query getFeed($userId: ID!){
     getFeed(userId: $userId) {
         id,
     title,

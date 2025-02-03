@@ -4,13 +4,20 @@ import RaftBudsLogo from '../assets/48.svg'
 import Modal from "./Modal";
 import LoadingSpinner from "./LoadingSpinner";
 import Profile from "./Profile";
+import { useQuery } from "@apollo/client";
+import { GET_USER } from "../gql/queries";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 
 function Login() {
+    const { userId } = useLocalStorage();
     const [showModal, setShowModal] = useState<boolean>(false);
     const { loginWithRedirect } = useAuth0();
     const { logout, isAuthenticated } = useAuth0();
     const { user, isLoading } = useAuth0();
+    const { data } = useQuery(GET_USER, { variables: { userId: userId } });
+
+    console.log(data);
 
     const handleLogin = () => { loginWithRedirect() }
 
@@ -30,7 +37,14 @@ function Login() {
         <section className="p-6 flex items-center justify-between">
             {isAuthenticated && user &&
                 <Modal isOpen={showModal} onClose={handleModalClose} title={'Profile'}>
-                    <Profile name={user?.name || ''} email={user?.email || 'No email registered'} picture={user?.picture || 'No picture'} handleLogout={handleLogout} />
+                    <Profile
+                        username={data?.getUser?.username || ''}
+                        email={data?.getUser?.email || 'No email registered'}
+                        profilePicture={data?.getUser?.profilePicture || 'No picture'}
+                        followers={data?.getUser?.followers}
+                        following={data?.getUser?.following}
+                        handleLogout={handleLogout}
+                        handleModalClose={handleModalClose} />
                 </Modal>
             }
             <header className="flex gap-2 items-center">

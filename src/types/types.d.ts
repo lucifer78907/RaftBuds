@@ -29,12 +29,21 @@ interface Tag {
 
 // USER 
 interface User {
-    name: string;
+    username: string;
     email: string;
-    picture: string;
-    followers?: number | 0;
-    following?: number | 0;
+    profilePicture: string;
+    followers: [{
+        id:string,
+        username:string,
+        email:string
+    }]
+    following:[{
+        id:string,
+        username:string,
+        email:string
+    }],
     handleLogout: () => void;
+    handleModalClose: () => void;
 }
 
 // FRIENDS
