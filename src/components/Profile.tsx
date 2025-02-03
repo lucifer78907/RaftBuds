@@ -13,10 +13,9 @@ import useLocalStorage from "../hooks/useLocalStorage";
 
 function Profile({ handleLogout, handleModalClose }: { handleLogout: () => void, handleModalClose: () => void }) {
     const { userId } = useLocalStorage();
-    const { data, loading } = useQuery(GET_USER, { variables: { userId: userId }, fetchPolicy: 'network-only' });
+    const { data, loading } = useQuery(GET_USER, { variables: { userId: userId }, fetchPolicy: 'cache-and-network' });
     const navigate = useNavigate();
 
-    console.log(data?.getUser);
 
     if (loading) {
         return <div className="mb-20">

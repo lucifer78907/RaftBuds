@@ -11,8 +11,6 @@ function AddFriends() {
     const { data, loading } = useQuery(GET_USERS_TO_FOLLOW, { variables: { authId: userId }, fetchPolicy: 'network-only' });
     const navigate = useNavigate();
 
-
-
     if (loading)
         return <LoadingSpinner />
 

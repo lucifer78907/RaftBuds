@@ -10,7 +10,6 @@ import MyPosts from "./pages/MyPosts"
 import UnfollowPeople from "./pages/Unfollow"
 
 // TODO - INFINITE SCROLLING
-// TODO - REFERSH ON ADD POST/ADD FRIENDS
 
 function App() {
   const router = createBrowserRouter([

@@ -1,25 +1,60 @@
-import { useAuth0 } from "@auth0/auth0-react"
+import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation, useQuery } from "@apollo/client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import Intro from "../components/Intro";
 import LoadingSpinner from "../components/LoadingSpinner";
 import Post from "../components/Post";
 import FeedHeader from "../components/FeedHeader";
-import { CREATE_USER, GET_FEED } from "../gql/queries";
-
+import { CREATE_USER, GET_FEED_WITH_CURSOR } from "../gql/queries";
 
 function HomeFeed() {
     const { isAuthenticated, user, isLoading, getAccessTokenSilently } = useAuth0();
     const [createUser, { data: userData }] = useMutation(CREATE_USER);
-    const { data } = useQuery(GET_FEED, { variables: { userId: userData?.createUser?.id }, fetchPolicy: 'network-only' });
+
+    // State for infinite scroll
+    const [feed, setFeed] = useState<PostProps[]>([]);
+    const [cursor, setCursor] = useState<string | null>(null);
+    const [hasMore, setHasMore] = useState(true);
+
+    const { data, fetchMore } = useQuery(GET_FEED_WITH_CURSOR, {
+        variables: { userId: userData?.createUser?.id, limit: 1, nextCursor: null },
+        fetchPolicy: "network-only",
+        onCompleted: (data) => {
+            setFeed(data.getFeedWithCursor.posts);
+            setCursor(data.getFeedWithCursor.nextCursor);
+            setHasMore(Boolean(data.getFeedWithCursor.nextCursor));
+        },
+    });
+
+    // console.log('DATA', data);
+    console.log('CURSOR', cursor)
+
+    const fetchMoreData = () => {
+        if (!cursor) return;
+
+        console.log('CURRENT CURSOR', cursor);
+
+        fetchMore({
+            variables: {
+                userId: userData?.createUser?.id,
+                nextCursor: cursor,
+                limit: 1,
+            },
+            updateQuery: (_, { fetchMoreResult }) => {
+                const newPosts = fetchMoreResult.getFeedWithCursor.posts;
+                const newCursor = fetchMoreResult.getFeedWithCursor.nextCursor;
+                setFeed((prevFeed) => [...prevFeed, ...newPosts]);
+                setCursor(newCursor);
+                setHasMore(Boolean(newCursor));
+            },
+        });
+    };
 
     useEffect(() => {
-        // create the user in the db
         if (isAuthenticated && user) {
             const syncUser = async () => {
-
                 const token = await getAccessTokenSilently();
-
                 await createUser({
                     variables: {
                         auth0Id: user.sub,
@@ -27,44 +62,40 @@ function HomeFeed() {
                         email: user.email,
                         profilePicture: user.picture,
                     },
-                    context: {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    },
+                    context: { headers: { Authorization: `Bearer ${token}` } },
                 });
-            }
+            };
             syncUser();
         }
-    }, [user, isAuthenticated, getAccessTokenSilently, createUser])
+    }, [user, isAuthenticated, getAccessTokenSilently, createUser]);
 
     useEffect(() => {
         if (userData) {
-            localStorage.setItem('userData', userData?.createUser?.id)
+            localStorage.setItem("userData", userData?.createUser?.id);
         }
-    }, [userData])
+    }, [userData]);
 
-
-
-    if (isLoading) {
-        return <LoadingSpinner />;
-    }
-
-    if (!isAuthenticated) {
-        return <Intro />
-    }
-
+    if (isLoading) return <LoadingSpinner />;
+    if (!isAuthenticated) return <Intro />;
 
     return (
-        <section className="p-6" >
+        <section className="p-6">
             <FeedHeader user={user} />
             <main>
-                <section className="grid grid-cols-1 md:grid-cols-2  gap-8 items-start ">
-                    {data?.getFeed.map((post: PostProps) => {
-                        return <Post key={post.id} post={post} />
-                    }
-                    )}
-                </section>
+                <InfiniteScroll
+                    dataLength={feed.length}
+                    next={fetchMoreData}
+                    hasMore={hasMore}
+                    loader={<LoadingSpinner />}
+                    endMessage={<p className="mt-10 text-3xl text-center text-gray-300 tracking-tight">No more posts!</p>}
+                    style={{ overflow: 'hidden' }}
+                >
+                    <section className="grid grid-cols-1  gap-8 w-[40%] mx-auto items-start">
+                        {feed.map((post) => (
+                            <Post key={post.id} post={post} />
+                        ))}
+                    </section>
+                </InfiniteScroll>
             </main>
         </section>
     );

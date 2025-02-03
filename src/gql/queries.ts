@@ -108,6 +108,27 @@ export const GET_USERS_TO_FOLLOW = gql`
 }
 `;
 
+export const GET_FEED_WITH_CURSOR = gql`
+    query test($userId: ID!,$nextCursor:String,$limit:Int){
+    getFeedWithCursor(userId: $userId,cursor:$nextCursor,limit:$limit) {
+        nextCursor,
+        posts {
+            id,
+            title,
+            content,
+            imageUrl
+            author {
+            profilePicture,
+            username,
+            email
+            }
+            mentions{
+                username
+            }
+        }
+    }
+    }
+`;
 
 export const GET_FEED = gql`
    query getFeed($userId: ID!){
