@@ -8,7 +8,7 @@ import FriendCard from '../components/FriendCard';
 function UnfollowPeople() {
     const navigate = useNavigate();
     const { userId } = useLocalStorage();
-    const { data } = useQuery(GET_FOLLOWING_LIST, { variables: { userId: userId } });
+    const { data } = useQuery(GET_FOLLOWING_LIST, { variables: { userId: userId }, fetchPolicy: 'network-only' });
 
 
     return (

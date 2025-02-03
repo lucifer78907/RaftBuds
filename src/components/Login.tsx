@@ -4,18 +4,13 @@ import RaftBudsLogo from '../assets/48.svg'
 import Modal from "./Modal";
 import LoadingSpinner from "./LoadingSpinner";
 import Profile from "./Profile";
-import { useQuery } from "@apollo/client";
-import { GET_USER } from "../gql/queries";
-import useLocalStorage from "../hooks/useLocalStorage";
 
 
 function Login() {
-    const { userId } = useLocalStorage();
     const [showModal, setShowModal] = useState<boolean>(false);
     const { loginWithRedirect } = useAuth0();
     const { logout, isAuthenticated } = useAuth0();
     const { user, isLoading } = useAuth0();
-    const { data } = useQuery(GET_USER, { variables: { userId: userId } });
 
     const handleLogin = () => { loginWithRedirect() }
 
@@ -36,11 +31,6 @@ function Login() {
             {isAuthenticated && user &&
                 <Modal isOpen={showModal} onClose={handleModalClose} title={'Profile'}>
                     <Profile
-                        username={data?.getUser?.username || ''}
-                        email={data?.getUser?.email || 'No email registered'}
-                        profilePicture={data?.getUser?.profilePicture || 'No picture'}
-                        followers={data?.getUser?.followers}
-                        following={data?.getUser?.following}
                         handleLogout={handleLogout}
                         handleModalClose={handleModalClose} />
                 </Modal>

@@ -11,7 +11,7 @@ import { CREATE_USER, GET_FEED } from "../gql/queries";
 function HomeFeed() {
     const { isAuthenticated, user, isLoading, getAccessTokenSilently } = useAuth0();
     const [createUser, { data: userData }] = useMutation(CREATE_USER);
-    const { data } = useQuery(GET_FEED, { variables: { userId: userData?.createUser?.id } });
+    const { data } = useQuery(GET_FEED, { variables: { userId: userData?.createUser?.id }, fetchPolicy: 'network-only' });
 
     useEffect(() => {
         // create the user in the db
@@ -59,7 +59,7 @@ function HomeFeed() {
         <section className="p-6" >
             <FeedHeader user={user} />
             <main>
-                <section className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <section className="grid grid-cols-1 md:grid-cols-2  gap-8 items-start ">
                     {data?.getFeed.map((post: PostProps) => {
                         return <Post key={post.id} post={post} />
                     }

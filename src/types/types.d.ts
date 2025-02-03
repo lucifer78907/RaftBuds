@@ -42,8 +42,6 @@ interface User {
         username:string,
         email:string
     }],
-    handleLogout: () => void;
-    handleModalClose: () => void;
 }
 
 // FRIENDS

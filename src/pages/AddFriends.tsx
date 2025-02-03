@@ -8,7 +8,7 @@ import useLocalStorage from "../hooks/useLocalStorage"
 
 function AddFriends() {
     const { userId } = useLocalStorage();
-    const { data, loading } = useQuery(GET_USERS_TO_FOLLOW, { variables: { authId: userId } });
+    const { data, loading } = useQuery(GET_USERS_TO_FOLLOW, { variables: { authId: userId }, fetchPolicy: 'network-only' });
     const navigate = useNavigate();
 
 
