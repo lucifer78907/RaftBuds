@@ -10,10 +10,11 @@ function Post({ post }: { post: PostProps }) {
                 </div>
             </header>
             <main className="flex flex-col gap-4">
-                {/* <p className="text-lg text-neutral-800 font-medium">{post.title} with  <span className='text-blue-500'>
-                    {post.tags.length > 2 ? `${post.tags.length} others` : `${post.tags.join(' & ')}`}
-                </span></p> */}
-                <p className="text-lg text-neutral-800 font-medium">{post.title}</p>
+                <p className="text-lg text-neutral-800 font-medium">{post.title}
+                    {post.mentions.length > 0 &&
+                        <span className='text-blue-500'> {post.mentions.length > 2 ? `with ${post.mentions.length} others` : `with ${post.mentions.map((mention) => mention.username).join(' & ')}`} </span>
+                    }
+                </p>
                 <p className="text-lg text-neutral-800">{post.content}</p>
                 <img src={post.imageUrl} alt={post.title} className="rounded-lg shadow-lg" />
             </main>

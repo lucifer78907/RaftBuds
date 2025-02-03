@@ -1,6 +1,6 @@
 import { RxCross2 } from "react-icons/rx";
 
-function TagPeople({ data, tags, removeTagHandler, addTagsHandler }: { data: any, tags: Tag[], removeTagHandler: (tagName: string) => void, addTagsHandler: () => void }) {
+function TagPeople({ data, tags, removeTagHandler, addTagsHandler }: { data: any, tags: Tag[], removeTagHandler: (tagName: string) => void, addTagsHandler: (e: React.ChangeEvent<HTMLSelectElement>) => void }) {
     return (
         <>
             <label htmlFor="tags" className="text-lg text-neutral-700 font-medium">Tag People</label>
@@ -8,6 +8,7 @@ function TagPeople({ data, tags, removeTagHandler, addTagsHandler }: { data: any
                 onChange={addTagsHandler}
                 className="p-2 border border-neutral-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"
             >
+                <option value="Select" disabled>Select People</option>
                 {data?.getFollowingList?.map((person: { id: string, username: string }) => (
                     <option key={person.id} value={`${person.username}-${person.id}`}>
                         {person.username}

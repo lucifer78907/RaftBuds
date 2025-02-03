@@ -1,4 +1,8 @@
 // POST
+type mentionObj = {
+    username:string,
+}
+
 interface PostProps {
     id: string,
     title: string,
@@ -9,6 +13,7 @@ interface PostProps {
         profilePicture: string,
         email: string
     }
+    mentions: mentionObj[];
 }
 
 type PostInput = {

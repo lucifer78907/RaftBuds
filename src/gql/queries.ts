@@ -72,6 +72,9 @@ export const GET_FEED = gql`
       username,
       email
     }
+    mentions{
+        username
+    }
   }
 }
 `;
