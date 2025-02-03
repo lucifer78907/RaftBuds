@@ -1,11 +1,12 @@
 import { useAuth0 } from "@auth0/auth0-react"
-import { useMutation } from "@apollo/client"
+import { useMutation, useQuery } from "@apollo/client"
 import React, { useState } from "react";
-import { CREATE_POST } from "../gql/queries";
+import { CREATE_POST, GET_FOLLOWING_LIST } from "../gql/queries";
 import { useDebouncedCallback } from "use-debounce";
 import { useNavigate } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import useLocalStorage from "../hooks/useLocalStorage";
+import TagPeople from "../components/TagPeople";
 
 
 
@@ -15,6 +16,8 @@ function AddPost() {
     const [createPost] = useMutation(CREATE_POST);
     const [post, setPost] = useState<PostInput>({ title: '', imageUrl: '', content: '' })
     const { userId } = useLocalStorage();
+    const { data } = useQuery(GET_FOLLOWING_LIST, { variables: { userId: userId } })
+    const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
 
 
     const handlePostSubmit = async (e: React.FormEvent) => {
@@ -27,7 +30,8 @@ function AddPost() {
                     author: userId,
                     title: post.title,
                     content: post.content,
-                    imageUrl: post.imageUrl
+                    imageUrl: post.imageUrl,
+                    tags: selectedTags.map((tag: Tag) => tag.id)
                 },
                 context: {
                     headers: {
@@ -46,6 +50,24 @@ function AddPost() {
         const value = e.target.value;
         setPost({ ...post, [id]: value })
     }, 200)
+
+
+
+    const addTagValueHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const [newTag, tagId] = e.target.value.split("-");
+        if (selectedTags.some(tag => tag.id === tagId)) return;
+        const newSelectedTags = [...selectedTags, { id: tagId, username: newTag }];
+        setSelectedTags(newSelectedTags);
+    };
+
+    const removeTagHandler = (tag: string) => {
+        const newSelectedTags = selectedTags.filter(
+            (product) => product.username !== tag,
+        );
+        setSelectedTags(newSelectedTags);
+    };
+
+
 
     return (
         <section className="p-6">
@@ -72,10 +94,7 @@ function AddPost() {
                         <label htmlFor="content" className="text-lg text-neutral-700 font-medium">Content</label>
                         <textarea onChange={handleInputChange} id="content" name="content" className="p-2 border border-neutral-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
                     </div>
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="tags" className="text-lg text-neutral-700 font-medium">Tags</label>
-                        <input onChange={handleInputChange} type="text" id="tags" name="tags" placeholder="Tag people (comma separated)" className="p-2 border border-neutral-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500" />
-                    </div>
+                    <TagPeople data={data} tags={selectedTags} addTagsHandler={addTagValueHandler} removeTagHandler={removeTagHandler} />
                     <button type="submit" className="px-4 py-2 text-lg rounded-xl shadow-md font-medium bg-orange-500 text-neutral-50">Submit</button>
                 </form>
             </main>

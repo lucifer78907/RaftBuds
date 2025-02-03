@@ -9,6 +9,7 @@ import ErrorPage from "./pages/ErrorPage"
 
 // TODO - INFINITE SCROLLING
 // TODO -MENTION FUNCTIONALITY
+// TODO - UPDATE USER BIO
 // TODO - REFERSH ON ADD POST/ADD FRIENDS
 
 function App() {

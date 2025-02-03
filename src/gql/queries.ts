@@ -11,8 +11,8 @@ export const CREATE_USER = gql`
 `;
 
 export const CREATE_POST = gql`
-    mutation CreatePost($author:ID!,$title:String!,$content:String!,$imageUrl:String!){
-        createPost(author:$author,title:$title,content:$content,imageUrl:$imageUrl){
+    mutation CreatePost($author:ID!,$title:String!,$content:String!,$imageUrl:String!,$tags:[ID!]){
+        createPost(author:$author,title:$title,content:$content,imageUrl:$imageUrl,tags:$tags){
             title
         }
     }
@@ -35,6 +35,17 @@ export const UNFOLLOW_USER = gql`
     }
     }
 `
+
+export const GET_FOLLOWING_LIST = gql`
+    query test($userId: ID!){
+    getFollowingList(id: $userId) {
+        username
+        email
+        profilePicture
+        id
+    }
+    }
+`;
 
 
 export const GET_USERS_TO_FOLLOW = gql`

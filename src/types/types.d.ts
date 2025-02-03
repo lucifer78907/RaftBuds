@@ -17,6 +17,11 @@ type PostInput = {
     imageUrl: string,
 }
 
+interface Tag {
+    username:string,
+    id:string,
+}
+
 // USER 
 interface User {
     name: string;
