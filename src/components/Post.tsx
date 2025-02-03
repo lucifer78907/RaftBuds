@@ -1,7 +1,5 @@
 function Post({ post }: { post: PostProps }) {
 
-    console.log(post);
-
     return (
         <article className="flex flex-col gap-4 mt-8 shadow-lg p-4 bg-neutral-50 rounded-xl">
             <header className="flex gap-4 items-center">

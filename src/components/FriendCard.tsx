@@ -1,25 +1,15 @@
 import { useMutation } from "@apollo/client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FOLLOW_USER, UNFOLLOW_USER } from "../gql/queries";
+import useLocalStorage from "../hooks/useLocalStorage";
 
-interface FriendCardDetails {
-    id: string,
-    username: string,
-    email: string,
-    profilePicture: string,
-}
+
 
 function FriendCard({ profilePicture, username, email, id }: FriendCardDetails) {
-    const [userId, setUserId] = useState<string>('');
+    const { userId } = useLocalStorage();
     const [followUser] = useMutation(FOLLOW_USER);
     const [unFollowUser] = useMutation(UNFOLLOW_USER);
     const [isFollow, setIsFollow] = useState<boolean>(false);
-
-    useEffect(() => {
-        const id = localStorage.getItem('userData');
-        if (id)
-            setUserId(id);
-    }, [])
 
     const handleFollow = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();

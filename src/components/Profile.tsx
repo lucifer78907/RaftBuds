@@ -6,16 +6,6 @@ import { MdAddAPhoto } from "react-icons/md";
 
 
 
-
-interface User {
-    name: string;
-    email: string;
-    picture: string;
-    followers?: number | 0;
-    following?: number | 0;
-    handleLogout: () => void;
-}
-
 function Profile({ name, email, picture, handleLogout }: User) {
     return (
         <div className="flex flex-col gap-2 items-center mx-2 my-4">

@@ -5,12 +5,10 @@ import RootLayout from "./layout/RootLayout"
 import HomeFeed from "./pages/HomeFeed"
 import AddPost from "./pages/AddPost"
 import AddFriends from "./pages/AddFriends"
+import ErrorPage from "./pages/ErrorPage"
 
 // TODO - INFINITE SCROLLING
 // TODO -MENTION FUNCTIONALITY
-// TODO -ADD ERROR ELEMENT
-// TODO - REFACTOR LOCALSTORAGE ID GETTING
-// TODO - REFACTOR TS CODE
 // TODO - REFERSH ON ADD POST/ADD FRIENDS
 
 function App() {
@@ -18,6 +16,7 @@ function App() {
     {
       path: '/',
       element: <RootLayout />,
+      errorElement: <ErrorPage />,
       children: [
         {
           index: true,

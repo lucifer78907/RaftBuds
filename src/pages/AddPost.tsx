@@ -1,30 +1,20 @@
 import { useAuth0 } from "@auth0/auth0-react"
-import { useMutation, gql } from "@apollo/client"
+import { useMutation } from "@apollo/client"
 import React, { useState } from "react";
 import { CREATE_POST } from "../gql/queries";
 import { useDebouncedCallback } from "use-debounce";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { FaHome } from "react-icons/fa";
+import useLocalStorage from "../hooks/useLocalStorage";
 
-type Post = {
-    title: string,
-    content: string,
-    imageUrl: string,
-}
+
 
 function AddPost() {
-    const [userId, setUserId] = useState<string>('');
     const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
     const navigate = useNavigate();
     const [createPost] = useMutation(CREATE_POST);
-    const [post, setPost] = useState<Post>({ title: '', imageUrl: '', content: '' })
-
-    useEffect(() => {
-        const id = localStorage.getItem('userData');
-        if (id)
-            setUserId(id);
-    }, [])
+    const [post, setPost] = useState<PostInput>({ title: '', imageUrl: '', content: '' })
+    const { userId } = useLocalStorage();
 
 
     const handlePostSubmit = async (e: React.FormEvent) => {
@@ -80,7 +70,7 @@ function AddPost() {
                     </div>
                     <div className="flex flex-col gap-2">
                         <label htmlFor="content" className="text-lg text-neutral-700 font-medium">Content</label>
-                        <textarea onChange={handleInputChange} id="content" name="content" rows="4" className="p-2 border border-neutral-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
+                        <textarea onChange={handleInputChange} id="content" name="content" className="p-2 border border-neutral-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500"></textarea>
                     </div>
                     <div className="flex flex-col gap-2">
                         <label htmlFor="tags" className="text-lg text-neutral-700 font-medium">Tags</label>

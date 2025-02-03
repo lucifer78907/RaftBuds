@@ -2,27 +2,16 @@ import FriendCard from "../components/FriendCard"
 import { useQuery } from "@apollo/client"
 import { GET_USERS_TO_FOLLOW } from "../gql/queries"
 import LoadingSpinner from "../components/LoadingSpinner"
-import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { FaHome } from "react-icons/fa"
-
-type FriendCardDetails = {
-    id: string,
-    username: string,
-    email: string,
-    profilePicture: string,
-}
+import useLocalStorage from "../hooks/useLocalStorage"
 
 function AddFriends() {
-    const [id, setId] = useState<string>('');
-    const { data, loading } = useQuery(GET_USERS_TO_FOLLOW, { variables: { authId: id } });
+    const { userId } = useLocalStorage();
+    const { data, loading } = useQuery(GET_USERS_TO_FOLLOW, { variables: { authId: userId } });
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const id = localStorage.getItem('userData');
-        if (id)
-            setId(id);
-    }, [])
+
 
     if (loading)
         return <LoadingSpinner />
