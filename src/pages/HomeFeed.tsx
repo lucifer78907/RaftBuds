@@ -30,8 +30,6 @@ function HomeFeed() {
     const fetchMoreData = () => {
         if (!cursor) return;
 
-        console.log('CURRENT CURSOR', cursor);
-
         fetchMore({
             variables: {
                 userId: userData?.createUser?.id,

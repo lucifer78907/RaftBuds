@@ -33,6 +33,12 @@ function MyPosts() {
                     )}
                 </section>
             </main>
+            {data?.getUserPosts.length === 0 &&
+                <div className="text-center mt-20">
+                    <h1 className="text-4xl text-orange-500 font-bold">Post something good!</h1>
+                    <p className="text-xl mt-2 text-neutral-500">You haven't posted anything yet.</p>
+                </div>
+            }
         </section>
     )
 }
