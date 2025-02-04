@@ -16,13 +16,14 @@ function MyPosts() {
 
     return (
         <section className="p-6" >
-            <header className="flex justify-between items-start gap-8">
+
+            <header className="flex flex-col gap-4 sm:flex-row justify-between items-start md:gap-8">
                 <div>
-                    <h1 className="text-3xl text-orange-500 font-bold">My posts</h1>
-                    <p className="text-lg text-neutral-500">View your posts</p>
+                    <h1 className="text-2xl md:text-3xl text-orange-500 font-bold">My posts</h1>
+                    <p className="text-sm md:text-lg text-neutral-500">View your posts</p>
                 </div>
                 <aside className="flex items-center gap-4">
-                    <p onClick={() => navigate('/')} className="flex items-center gap-2 bg-orange-100 rounded-full shadow-md px-4 py-2 text-orange-600 cursor-pointer"><FaHome size={'1.4em'} />Home</p>
+                    <p onClick={() => navigate('/')} className="text-sm sm:text-base flex items-center gap-2 bg-orange-100 rounded-full shadow-md px-4 py-2 text-orange-600 cursor-pointer"><FaHome size={'1.4em'} />Home</p>
                 </aside>
             </header>
             <main>
