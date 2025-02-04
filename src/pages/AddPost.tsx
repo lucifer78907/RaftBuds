@@ -92,11 +92,11 @@ function AddPost() {
                 <form onSubmit={handlePostSubmit} className="flex flex-col gap-4 mt-4">
                     <div className="flex flex-col gap-2">
                         <label htmlFor="title" className="text-lg text-neutral-700 font-medium">Title</label>
-                        <input onChange={handleInputChange} type="text" id="title" name="title" className="p-2 border border-neutral-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500" />
+                        <input onChange={handleInputChange} type="text" id="title" name="title" required className="p-2 border border-neutral-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500" />
                     </div>
                     <div className="flex flex-col gap-2">
                         <label htmlFor="imageUrl" className="text-lg text-neutral-700 font-medium">Image URL</label>
-                        <input onChange={handleInputChange} type="text" id="imageUrl" name="imageUrl" className="p-2 border border-neutral-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500" />
+                        <input onChange={handleInputChange} type="text" id="imageUrl" name="imageUrl" required className="p-2 border border-neutral-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500" />
                     </div>
                     <div className="flex flex-col gap-2">
                         <label htmlFor="content" className="text-lg text-neutral-700 font-medium">Content</label>
