@@ -1,3 +1,5 @@
+// GLOBAL TYPES FILE
+
 // POST
 type mentionObj = {
     username:string,

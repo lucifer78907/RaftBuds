@@ -14,8 +14,6 @@ function AddFriends() {
     if (loading)
         return <LoadingSpinner />
 
-    console.log(data?.getPeopleToFollow);
-
 
     return (
         <section className="p-6">

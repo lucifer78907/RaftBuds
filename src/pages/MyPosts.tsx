@@ -11,7 +11,6 @@ function MyPosts() {
     const navigate = useNavigate();
     const { data } = useQuery(GET_USER_POSTS, { variables: { userId: userId } })
 
-    console.log(data?.getUserPosts)
 
 
     return (

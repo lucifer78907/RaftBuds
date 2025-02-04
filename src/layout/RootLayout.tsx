@@ -7,6 +7,7 @@ function RootLayout() {
     const { isAuthenticated } = useAuth0();
     const location = useLocation();
 
+    // if user is not authenticated then send to intro page
     if (!isAuthenticated && location.pathname !== '/') {
         return <NotAuthenticated />
     }

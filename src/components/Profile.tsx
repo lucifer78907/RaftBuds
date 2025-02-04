@@ -42,7 +42,7 @@ function Profile({ handleLogout, handleModalClose }: { handleLogout: () => void,
                     <button onClick={() => handleNavigate('/add-post')} className="flex items-center gap-2 cursor-pointer shadow-md px-4 py-2 rounded-xl"><MdAddAPhoto size={'2em'} className="fill-neutral-500" /> Add post</button>
                     <button onClick={() => handleNavigate('/my-posts')} className="flex items-center gap-2 cursor-pointer shadow-md px-4 py-2 rounded-xl"><MdOutlinePhotoLibrary size={'2em'} className="fill-neutral-500" />My Posts</button>
                     <button onClick={() => handleNavigate('/add-friends')} className="flex items-center gap-2 cursor-pointer shadow-md px-4 py-2 rounded-xl"><FaUserPlus size={'2em'} className="fill-neutral-500" />Add friends</button>
-                    <button onClick={() => handleNavigate('/unfollow')} className="flex items-center gap-2 cursor-pointer shadow-md px-2 py-2 rounded-xl"><FaUserXmark size={'2em'} className="fill-neutral-500" />Remove friends</button>
+                    <button onClick={() => handleNavigate('/unfollow')} className="flex items-center gap-2 cursor-pointer shadow-md px-4 py-2 rounded-xl"><FaUserXmark size={'2em'} className="fill-neutral-500" />Remove friends</button>
 
                 </section>
             </main>

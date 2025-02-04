@@ -10,6 +10,7 @@ import MyPosts from "./pages/MyPosts"
 import UnfollowPeople from "./pages/Unfollow"
 
 
+// Routes for the app
 function App() {
   const router = createBrowserRouter([
     {

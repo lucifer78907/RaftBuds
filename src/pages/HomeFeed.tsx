@@ -27,6 +27,7 @@ function HomeFeed() {
         },
     });
 
+    // function to fetch more posts
     const fetchMoreData = () => {
         if (!cursor) return;
 
@@ -46,6 +47,7 @@ function HomeFeed() {
         });
     };
 
+    // sync user data with the backend once user login
     useEffect(() => {
         if (isAuthenticated && user) {
             const syncUser = async () => {
@@ -64,6 +66,7 @@ function HomeFeed() {
         }
     }, [user, isAuthenticated, getAccessTokenSilently, createUser]);
 
+    // store the userId in localstorage for further requests
     useEffect(() => {
         if (userData) {
             localStorage.setItem("userData", userData?.createUser?.id);
@@ -85,6 +88,7 @@ function HomeFeed() {
                     endMessage={<p className="mt-10 text-3xl text-center text-gray-300 tracking-tight">No more posts!</p>}
                     style={{ overflow: 'hidden' }}
                 >
+                    {/* Render posts */}
                     <section className="w-full grid grid-cols-1 lg:grid-cols-2 lg:w-full xl:w-[75%]  gap-8 sm:w-[75%] mx-auto items-start">
                         {feed.map((post) => (
                             <Post key={post.id} post={post} />

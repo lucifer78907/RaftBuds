@@ -11,17 +11,23 @@ import TagPeople from "../components/TagPeople";
 
 
 function AddPost() {
-    const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
-    const navigate = useNavigate();
-    const [createPost] = useMutation(CREATE_POST);
+    // State
     const [post, setPost] = useState<PostInput>({ title: '', imageUrl: '', content: '' })
-    const { userId } = useLocalStorage();
-    const { data } = useQuery(GET_FOLLOWING_LIST, { variables: { userId: userId } })
     const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+    // User
+    const { userId } = useLocalStorage();
+    const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+    // Requests
+    const [createPost] = useMutation(CREATE_POST);
+    const { data } = useQuery(GET_FOLLOWING_LIST, { variables: { userId: userId } })
+    // Navigation
+    const navigate = useNavigate();
 
 
+    // Submit post handler
     const handlePostSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        // only submit if the user is there and authenticated
         if (user && isAuthenticated) {
             const token = await getAccessTokenSilently();
 
@@ -45,6 +51,7 @@ function AddPost() {
         }
     }
 
+    // In case of any input change , this is handled by this function (except the tags)
     const handleInputChange = useDebouncedCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const id = e.target.id;
         const value = e.target.value;
@@ -53,6 +60,7 @@ function AddPost() {
 
 
 
+    // Add / Remove tag handler
     const addTagValueHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const [newTag, tagId] = e.target.value.split("-");
         if (selectedTags.some(tag => tag.id === tagId)) return;
