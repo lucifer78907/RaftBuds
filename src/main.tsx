@@ -10,7 +10,7 @@ const authOClientId = import.meta.env.VITE_AUTH0_CLIENT_ID
 
 // ApolloClient
 const client = new ApolloClient({
-  uri: 'http://localhost:5000/graphql',
+  uri: 'https://raftbuds-backend.onrender.com/graphql',
   cache: new InMemoryCache()
 })
 
