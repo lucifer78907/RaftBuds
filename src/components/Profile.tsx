@@ -29,16 +29,16 @@ function Profile({ handleLogout, handleModalClose }: { handleLogout: () => void,
     }
 
     return (
-        <div className="flex flex-col gap-2 items-center mx-2 my-4">
+        <div className="flex flex-col gap-2 items-center mx-2 my-4 ">
             <img src={data?.getUser.profilePicture} alt={data?.getUser.username} className="w-24 h-24 rounded-full shadow-md" />
             <h3 className="text-lg font-medium text-neutral-700">{data?.getUser.username}</h3>
             <p className="text-sm -mt-2 font-light text-neutral-500">{data?.getUser.email}</p>
             <main className="w-full">
                 <header className="flex gap-8 items-center justify-center">
-                    <p className="text-xl text-neutral-700 font-medium">Followers <span className="text-orange-400">{data?.getUser.followers?.length}</span></p>
-                    <p className="text-xl text-neutral-700 font-medium">Following <span className="text-orange-400">{data?.getUser.following?.length}</span></p>
+                    <p className="text-base sm:text-xl text-neutral-700 font-medium">Followers <span className="text-orange-400">{data?.getUser.followers?.length}</span></p>
+                    <p className="text-base sm:text-xl text-neutral-700 font-medium">Following <span className="text-orange-400">{data?.getUser.following?.length}</span></p>
                 </header>
-                <section className="my-8  grid grid-cols-2 gap-4 text-neutral-800">
+                <section className="my-8  grid grid-cols-1 sm:grid-cols-2 gap-4 text-neutral-800">
                     <button onClick={() => handleNavigate('/add-post')} className="flex items-center gap-2 cursor-pointer shadow-md px-4 py-2 rounded-xl"><MdAddAPhoto size={'2em'} className="fill-neutral-500" /> Add post</button>
                     <button onClick={() => handleNavigate('/my-posts')} className="flex items-center gap-2 cursor-pointer shadow-md px-4 py-2 rounded-xl"><MdOutlinePhotoLibrary size={'2em'} className="fill-neutral-500" />My Posts</button>
                     <button onClick={() => handleNavigate('/add-friends')} className="flex items-center gap-2 cursor-pointer shadow-md px-4 py-2 rounded-xl"><FaUserPlus size={'2em'} className="fill-neutral-500" />Add friends</button>
