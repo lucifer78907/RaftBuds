@@ -37,11 +37,11 @@ function Login() {
             }
             <header className="flex gap-2 items-center">
                 <img src={RaftBudsLogo} alt="RaftBuds" className="w-12 h-12" />
-                <h2 className="text-2xl text-orange-500 font-medium">RaftBuds</h2>
+                <h2 className="text-xl md:text-2xl text-orange-500 font-medium">RaftBuds</h2>
             </header>
             <div className="flex gap-4 items-center">
                 {!isAuthenticated &&
-                    <button onClick={handleLogin} className="px-4 py-2 text-2xl rounded-xl shadow-md font-medium bg-orange-500 text-neutral-50">Login</button>
+                    <button onClick={handleLogin} className="px-4 py-2 text-xl lg:text-2xl rounded-xl shadow-md font-medium bg-orange-500 text-neutral-50">Login</button>
                 }
                 {isAuthenticated && user &&
                     <article className="flex gap-4 items-center cursor-pointer" onClick={() => setShowModal(true)}>

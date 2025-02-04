@@ -25,15 +25,15 @@ function FriendCard({ profilePicture, username, email, id, isFollowing }: Friend
     }
 
     return (
-        <article className="flex rounded-xl shadow-md items-center gap-4 bg-neutral-50 py-4 px-8">
+        <article className="flex flex-col sm:flex-row justify-center rounded-xl shadow-md items-center gap-4 bg-neutral-50 py-4 px-8">
             <header>
                 <img src={profilePicture} alt="Person img" className="w-18 h-18 object-cover rounded-full" />
             </header>
             <main>
-                <h2 className="text-2xl font-medium text-neutral-700">{username}</h2>
+                <h2 className="text-lg md:text-2xl font-medium text-neutral-700">{username}</h2>
                 <p className="text-sm text-neutral-500">{email}</p>
             </main>
-            <aside className="ml-auto">
+            <aside className="sm:ml-auto">
                 <button onClick={handleFollow} className={`cursor-pointer px-4 py-2 rounded-full ${isFollow ? 'bg-neutral-500' : 'bg-orange-500'}  text-xl font-medium text-white shadow-lg`}>{isFollow ? 'Unfollow' : 'Follow'}</button>
             </aside>
         </article>

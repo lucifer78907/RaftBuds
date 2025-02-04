@@ -6,14 +6,14 @@ function FeedHeader({ nickname, name }: { nickname: string, name: string }) {
     const navigate = useNavigate();
 
     return (
-        <header className="flex justify-between items-start gap-8">
+        <header className="flex flex-col md:flex-row justify-between items-start gap-8">
             <div>
-                <h1 className="text-3xl text-neutral-700 font-bold">Welcome <span className="text-orange-500">{nickname || name}</span></h1>
-                <p className="mt-5 text-2xl text-neutral-500">Latest posts from fellow RaftBuds</p>
+                <h1 className="text-2xl lg:text-3xl text-neutral-700 font-bold">Welcome <span className="text-orange-500">{nickname || name}</span></h1>
+                <p className="mt-2 lg:mt-5 text-sm lg:text-2xl text-neutral-500">Latest posts from fellow RaftBuds</p>
             </div>
             <aside className="flex items-center gap-4">
-                <p onClick={() => navigate('/add-friends')} className="flex items-center gap-2 bg-orange-100 rounded-full shadow-md px-4 py-2 text-orange-600 cursor-pointer"><IoPersonAddSharp size={'1.4em'} />Add friends</p>
-                <p onClick={() => navigate('/add-post')} className="flex items-center gap-2 bg-orange-100 rounded-full shadow-md px-4 py-2 text-orange-600 cursor-pointer"><MdAddAPhoto size={'1.4em'} />Add Post</p>
+                <p onClick={() => navigate('/add-friends')} className="text-sm sm:text-base flex items-center gap-2 bg-orange-100 rounded-full shadow-md px-4 py-2 text-orange-600 cursor-pointer"><IoPersonAddSharp size={'1.4em'} />Add friends</p>
+                <p onClick={() => navigate('/add-post')} className="text-sm sm:text-base flex items-center gap-2 bg-orange-100 rounded-full shadow-md px-4 py-2 text-orange-600 cursor-pointer"><MdAddAPhoto size={'1.4em'} />Add Post</p>
             </aside>
         </header>
     )

@@ -85,7 +85,7 @@ function HomeFeed() {
                     endMessage={<p className="mt-10 text-3xl text-center text-gray-300 tracking-tight">No more posts!</p>}
                     style={{ overflow: 'hidden' }}
                 >
-                    <section className="grid grid-cols-1  gap-8 w-[40%] mx-auto items-start">
+                    <section className="w-full grid grid-cols-1 lg:grid-cols-2 lg:w-full xl:w-[75%]  gap-8 sm:w-[75%] mx-auto items-start">
                         {feed.map((post) => (
                             <Post key={post.id} post={post} />
                         ))}

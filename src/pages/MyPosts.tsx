@@ -26,7 +26,7 @@ function MyPosts() {
                 </aside>
             </header>
             <main>
-                <section className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <section className="w-full grid grid-cols-1 lg:grid-cols-2 lg:w-full xl:w-[75%]  gap-8 sm:w-[75%] mx-auto items-start">
                     {data?.getUserPosts.map((post: PostProps) => {
                         return <Post key={post.id} post={post} />
                     }
