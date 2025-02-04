@@ -17,7 +17,7 @@ function HomeFeed() {
     const [cursor, setCursor] = useState<string | null>(null);
     const [hasMore, setHasMore] = useState(true);
 
-    const { data, fetchMore } = useQuery(GET_FEED_WITH_CURSOR, {
+    const { fetchMore } = useQuery(GET_FEED_WITH_CURSOR, {
         variables: { userId: userData?.createUser?.id, limit: 2, nextCursor: null },
         fetchPolicy: "network-only",
         onCompleted: (data) => {
@@ -77,7 +77,7 @@ function HomeFeed() {
 
     return (
         <section className="p-6">
-            <FeedHeader user={user} />
+            <FeedHeader nickname={user?.nickname || 'No nickname'} name={user?.name || 'User'} />
             <main>
                 <InfiniteScroll
                     dataLength={feed.length}
