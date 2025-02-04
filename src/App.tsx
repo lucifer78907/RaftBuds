@@ -9,7 +9,8 @@ import ErrorPage from "./pages/ErrorPage"
 import MyPosts from "./pages/MyPosts"
 import UnfollowPeople from "./pages/Unfollow"
 
-// TODO - INFINITE SCROLLING
+// TODO -REFACTOR & CLEANUP
+// TODO -FIX MINOR BUGS AND HICCUPS
 
 function App() {
   const router = createBrowserRouter([

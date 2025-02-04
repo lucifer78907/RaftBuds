@@ -18,7 +18,7 @@ function HomeFeed() {
     const [hasMore, setHasMore] = useState(true);
 
     const { data, fetchMore } = useQuery(GET_FEED_WITH_CURSOR, {
-        variables: { userId: userData?.createUser?.id, limit: 1, nextCursor: null },
+        variables: { userId: userData?.createUser?.id, limit: 2, nextCursor: null },
         fetchPolicy: "network-only",
         onCompleted: (data) => {
             setFeed(data.getFeedWithCursor.posts);
@@ -26,9 +26,6 @@ function HomeFeed() {
             setHasMore(Boolean(data.getFeedWithCursor.nextCursor));
         },
     });
-
-    // console.log('DATA', data);
-    console.log('CURSOR', cursor)
 
     const fetchMoreData = () => {
         if (!cursor) return;
@@ -39,7 +36,7 @@ function HomeFeed() {
             variables: {
                 userId: userData?.createUser?.id,
                 nextCursor: cursor,
-                limit: 1,
+                limit: 2,
             },
             updateQuery: (_, { fetchMoreResult }) => {
                 const newPosts = fetchMoreResult.getFeedWithCursor.posts;
